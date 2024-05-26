@@ -1,0 +1,25 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider      = "mysql"
+  url           = env("DATABASE_URL")
+}
+
+enum Priority {
+    ALTA
+    MEDIA
+    BAIXA
+}
+
+model Task {
+    id               String       @id @default(uuid())
+    priority         Priority
+    title            String       @unique
+    description      String
+    completion_date  String
+
+    @@map("tasks")
+}
