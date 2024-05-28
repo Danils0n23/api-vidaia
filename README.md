@@ -85,4 +85,4 @@ Acessar o container onde esta à aplicacão e dentro do diretório do projecto e
 
 ### Documentação OpenAPI 3.0 - SWAGGER
 
-- Após servidor iniciado, acesse [api-docs-swagger](http://134.209.124.158:4568/api-docs/) para visualizar a documentação da API.
+- Após servidor iniciado, acesse `localhost:4568/api-docs` para visualizar a documentação da API.

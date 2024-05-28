@@ -1,5 +1,6 @@
 import AppError from '../libs/errors/AppError';
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import log from '../libs/providers/LogProvider';
 import rateLimit from 'express-rate-limit';
 import { router } from '../routes';
@@ -13,6 +14,23 @@ const limiter = rateLimit({
 });
 
 const app = express();
+
+const options: cors.CorsOptions = {
+  allowedHeaders: [
+    'Origin',
+    'X-Requested-With',
+    'Content-Type',
+    'Accept',
+    'X-Access-Token',
+  ],
+  credentials: true,
+  methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+  origin: '*',
+  preflightContinue: false,
+};
+
+app.use(cors(options));
+app.options('*', cors(options));
 
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
